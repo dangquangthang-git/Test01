@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-08-28T09:36:36 ICT" name="Default suite" finished-at="2024-08-28T09:36:41 ICT" duration-ms="4862">
+    <groups>
+    </groups>
+    <test started-at="2024-08-28T09:36:36 ICT" name="Default test" finished-at="2024-08-28T09:36:41 ICT" duration-ms="4862">
+      <class name="Package01.Firstclass">
+        <test-method is-config="true" signature="firstmathod()[pri:0, instance:Package01.Firstclass@7d4f9aae]" started-at="2024-08-28T09:36:36 ICT" name="firstmathod" finished-at="2024-08-28T09:36:41 ICT" duration-ms="4807" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- firstmathod -->
+        <test-method signature="firstmethod()[pri:0, instance:Package01.Firstclass@7d4f9aae]" started-at="2024-08-28T09:36:41 ICT" name="firstmethod" finished-at="2024-08-28T09:36:41 ICT" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- firstmethod -->
+        <test-method signature="secondmethod()[pri:0, instance:Package01.Firstclass@7d4f9aae]" started-at="2024-08-28T09:36:41 ICT" name="secondmethod" finished-at="2024-08-28T09:36:41 ICT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- secondmethod -->
+      </class> <!-- Package01.Firstclass -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

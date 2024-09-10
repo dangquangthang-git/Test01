@@ -1,0 +1,210 @@
+package Package01;
+
+import java.awt.Window;
+import java.sql.Driver;
+import org.testng.annotations.Test;
+import org.testng.annotations.TestInstance;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.server.handler.FindElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+
+import static org.testng.Assert.assertNotNull;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class cap_don_VCXpti {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Chromedriver\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
+
+		// Log in
+		driver.navigate().to("https://id-uat.ivnd.com.vn/login?&redirect-app=dsb-web-dev");
+		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
+		username.sendKeys("pti\\pms.test1");
+		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
+		password.sendKeys("abcd@1234");
+		driver.findElement(By.xpath("//button[@type='button']")).click();
+		Thread.sleep(3000);
+		/*
+		 * Vào luồng cấp đơn WebElement task_management =
+		 * driver.findElement(By.xpath("//span[contains(.,'Quản lý công việc')]"));
+		 * task_management.click();
+		 * 
+		 * // Sử dụng WebDriverWait để chờ phần tử <select> xuất hiện WebDriverWait wait
+		 * = new WebDriverWait(driver, 10); WebElement selectElement =
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.id("selectElementId")))
+		 * ;
+		 * 
+		 * // Tạo đối tượng Select từ phần tử <select> Select select = new
+		 * Select(selectElement);
+		 * 
+		 * // Chọn tùy chọn theo chỉ mục select.selectByIndex(1);
+		 * 
+		 * // Nhấp vào phần tử "Quản lý HĐ bảo hiểm" WebElement insuranceManagement =
+		 * driver.findElement(By.
+		 * xpath("//span[@class='ivnd-menu-title-content'][contains(text(),'Quản lý HĐ bảo hiểm')]"
+		 * )); insuranceManagement.click();
+		 */
+
+		driver.navigate()
+				.to("http://10.210.39.45:3000/work-management/product-service-management/insurance-contract/list");
+
+		// Tạo đơn
+		WebElement create = driver.findElement(By.xpath("//span[contains(.,'Tạo đơn')]"));
+		create.click();
+		Thread.sleep(1000);
+
+		// Màn thông tin chung
+		WebElement first_screen = driver
+				.findElement(By.xpath("//div[@class='ivnd-select-selector'][contains(.,'Chọn loại khách hàng')]"));
+		first_screen.click();
+
+		driver.findElement(By.xpath("//div[@class='ivnd-select-item-option-content'][contains(.,'Phi doanh nghiệp')]"))
+				.click();
+//		driver.findElement(By.xpath("//input[contains(@value,'LIABILITY')]")).click(); //TNDS bắt buộc
+		driver.findElement(By.xpath("//input[@value='CAR_ASSET']")).click();// VCX
+		driver.findElement(By.xpath("//span[contains(.,'Tiếp tục')]")).click();
+
+		// Màn thông tin xe
+		WebElement verifyText = driver
+				.findElement(By.xpath("//h5[@class='ivnd-typography'][contains(.,'Nhập thông tin xe')]"));
+
+		boolean isverify = verifyText.isDisplayed();
+		if (isverify == true) {
+			if (verifyText.equals("Nhập thông tin xe")) {
+				System.out.println("Đã vào man thông tin xe");
+			}
+		} else {
+			System.out.println("chưa vào màn");
+		}
+
+		driver.findElement(By.xpath("//input[@value='OLD']")).click();
+		driver.findElement(By.xpath("//input[@value='XE.MDSD.02']")).click();
+		Thread.sleep(1000);
+
+		WebElement brand = driver.findElement(By.xpath("//input[@aria-owns='form2_vehicleBrand_list']"));
+		brand.click();
+		brand.sendKeys("FORD");
+
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+
+		// Nhập hiệu xe
+		WebElement carbranch = driver.findElement(By.xpath("//input[@type='search'][contains(@id,'vehicleSubBrand')]"));
+		carbranch.click();
+		carbranch.sendKeys("ECOSPORT TITANIUM 1.5L AT");
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+
+		// Loại xe
+		WebElement carType = driver.findElement(By.xpath("//input[@aria-owns='form2_vehicleType_list']"));
+		carType.click();
+		carType.sendKeys("Xe con chở người");
+		Thread.sleep(2000);
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+
+		// Year
+		WebElement year = driver.findElement(By.xpath("//input[@placeholder='Năm sản xuất']"));
+		year.click();
+		year.sendKeys("2019");
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+
+		// Chỗ ngồi
+		WebElement seatNum = driver.findElement(By.xpath("//input[@id='form2_seat']"));
+		seatNum.click();
+		seatNum.sendKeys("5");
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+
+		driver.findElement(By.xpath("(//input[@type='radio'])[9]")).click();
+		driver.findElement(By.xpath("//input[contains(@id,'licensePlate')][@aria-required='true']"))
+				.sendKeys("30A-999.99");
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//input[@maxlength='17'][contains(@id,'frameNumber')]"))
+				.sendKeys("RLJHG2555NY202503");
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//input[@id='form2_vehicleValue']")).sendKeys("450,000,000");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//span[contains(.,'Tiếp tục')]")).click();
+		Thread.sleep(2000);
+
+		// Màn thông tin gói bảo hiểm
+		WebElement verifyText2 = driver.findElement(By.xpath("//div[@class='text-2xl font-semibold']"));
+
+		boolean isverify2 = verifyText2.isDisplayed();
+		if (isverify2 == true) {
+			if (verifyText2.equals("Thông tin gói bảo hiểm")) {
+				System.out.println("Đã vào man thông tin xe");
+			}
+		} else {
+			System.out.println("chưa vào màn");
+		}
+
+		// Mức khấu trừ
+		WebElement khau_tru = driver.findElement(By.xpath("//input[contains(@aria-owns,'discountValue_list')]"));
+		khau_tru.click();
+		WebElement one_million = driver.findElement(By.xpath("//div[@title='1,000,000']"));
+		one_million.click();
+
+		driver.findElement(By.xpath("//button[@type='button'][contains(.,'Tiếp tục')]")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//input[@placeholder='Phí bán đề xuất'][contains(@id,'proposeSellFeeValue')]"))
+				.sendKeys("20,000,000");
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//input[contains(@value,'DEBIT')]")).click();
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//span[contains(.,'Tiếp tục')]")).click();
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//input[@placeholder='Nhập tên đơn vị'][contains(@id,'fullName')]")).sendKeys("A");
+		driver.findElement(By.xpath("//input[@placeholder='Nhập tên người đại diện'][contains(@id,'representatives')]"))
+				.sendKeys("B");
+		driver.findElement(By.xpath("//input[@placeholder='Nhập số CMT/CCCD'][contains(@id,'identityId')]"))
+				.sendKeys("034098555516");
+
+		driver.findElement(By.xpath("//input[@placeholder='Nhập số điện thoại'][contains(@id,'phoneNumber')]"))
+				.sendKeys("0969429883");
+		driver.findElement(By.xpath("//input[@placeholder='Nhập email'][contains(@id,'email')]"))
+				.sendKeys("test@gmail.com");
+
+		driver.findElement(By.xpath("//input[@type='search'][contains(@id,'city')]")).click();
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("(//div[@class='ivnd-select-selector'][contains(.,'Chọn')])[1]")).click();
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//div[@class='ivnd-select-selector'][contains(.,'Chọn')]")).click();
+		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//input[@placeholder='Nhập địa chỉ'][contains(@id,'address')]")).sendKeys("sadfasdf");
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//span[contains(.,'Tiếp tục')]")).click();
+		Thread.sleep(2000);
+		//Xác nhận
+		driver.findElement(By.xpath("//button[@type='button'][contains(.,'Xác nhận')]")).click();
+
+	}
+
+}
