@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Combine Suite" verbose="1">
+	<test name="Combine Test">
+		<packages>
+			<package name="Package01" />
+		</packages>
+
+		<classes>
+			<class name="Package02.Firstclass" />
+			<class name="Package02.Secondclass"/>
+		</classes>
+
+	</test>
+</suite>
